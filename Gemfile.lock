@@ -1,0 +1,25 @@
+PATH
+  remote: .
+  specs:
+    freeling-client (0.0.1)
+      hashie
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    hashie (3.3.2)
+    metaclass (0.0.4)
+    minitest (5.4.3)
+    mocha (1.1.0)
+      metaclass (~> 0.0.1)
+    rake (10.3.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler (~> 1.7)
+  freeling-client!
+  minitest
+  mocha
+  rake (~> 10.3)
