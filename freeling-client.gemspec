@@ -20,8 +20,8 @@ Gem::Specification.new do |s|
   s.test_files  = s.files.grep(%r{^(test|spec|features)/})
   s.require_paths = ["lib"]
 
-  s.add_dependency "hashie"
+  s.add_dependency "hashie", "~> 3"
   s.add_development_dependency "bundler", "~> 1.7"
   s.add_development_dependency "rake", "~> 10.3"
-  s.add_development_dependency "minitest"
+  s.add_development_dependency "minitest", "~> 5"
 end
