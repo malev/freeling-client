@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     freeling-client (0.0.1)
-      hashie
+      hashie (~> 3)
 
 GEM
   remote: https://rubygems.org/
@@ -17,5 +17,5 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 1.7)
   freeling-client!
-  minitest
+  minitest (~> 5)
   rake (~> 10.3)
