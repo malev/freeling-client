@@ -1,6 +1,6 @@
 # Freeling::Client
 
-Simple client wrapper for Freeling analyzer tool. If you need to install freeling on Ubuntu 14.04 just follow [this](https://gist.github.com/malev/d6a8b51c2ae0a762ab1d) guide.
+Simple client wrapper for Freeling analyzer tool. For only works with [this](http://nlp.lsi.upc.edu/freeling/doc/userman/html/node91.html) options. If you need to install freeling on Ubuntu 14.04 just follow [this](https://gist.github.com/malev/d6a8b51c2ae0a762ab1d) guide.
 
 ## Example of usage:
 
@@ -43,16 +43,20 @@ freeling_client.call(text)
 
 Performing morphological analysis:
 
-    FREELINGSHARE=/usr/local/share/freeling/ analyzer -f config/freeling/analyzer.cfg --server --port 50005 --inpf plain --outf morfo
+    FREELINGSHARE=/usr/local/share/freeling/ analyzer \
+    -f config/freeling/analyzer.cfg --server --port 50005 --inpf plain --outf morfo
 
 Performing morphological with PoS tagging:
 
-    FREELINGSHARE=/usr/local/share/freeling/ analyzer -f config/freeling/analyzer.cfg --server --port 50005 --inpf plain --outf tagged
+    FREELINGSHARE=/usr/local/share/freeling/ analyzer \
+    -f config/freeling/analyzer.cfg --server --port 50005 --inpf plain --outf tagged
 
 Asking for the senses of the tagged words:
 
-    FREELINGSHARE=/usr/local/share/freeling/ analyzer -f config/freeling/analyzer.cfg --server --port 50005 --inpf plain --outf sense --sense all
+    FREELINGSHARE=/usr/local/share/freeling/ analyzer \
+    -f config/freeling/analyzer.cfg --server --port 50005 --inpf plain --outf sense --sense all
 
 With `nec` analysis:
 
-    FREELINGSHARE=/usr/local/share/freeling/ analyzer -f config/freeling/analyzer.cfg --server --port 50005 --inpf plain --outf tagged --nec --noflush
+    FREELINGSHARE=/usr/local/share/freeling/ analyzer \
+    -f config/freeling/analyzer.cfg --server --port 50005 --inpf plain --outf tagged --nec --noflush
