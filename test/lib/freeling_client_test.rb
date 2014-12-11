@@ -13,4 +13,11 @@ describe FreelingClient do
     freeling_client = FreelingClient::Client.new
     freeling_client.call(text)[0].must_equal "El el DA0MS0 1"
   end
+
+  it 'Uses freeling to get a morphological analysis' do
+    text = "El gato come pescado. Pero a Don Jaime no le gustan los gatos."
+    analyzer = FreelingClient::Analyzer.new
+
+    analyzer.call(:morfo, text)[0].must_equal "El el DA0MS0 1"
+  end
 end

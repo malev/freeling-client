@@ -7,7 +7,7 @@ module FreelingClient
     def initialize(opt = {})
       @config = opt.fetch(:config, 'config/freeling/analyzer.cfg')
       @ident = opt.fetch(:ident, '/usr/local/share/freeling/common/lang_ident/ident.dat')
-      @timeout = opt.fetch(:timeout, 60)
+      @timeout = opt.fetch(:timeout, 120)
     end
 
     def detect(text)
