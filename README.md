@@ -60,3 +60,7 @@ With `nec` analysis:
 
     FREELINGSHARE=/usr/local/share/freeling/ analyzer \
     -f config/freeling/analyzer.cfg --server --port 50005 --inpf plain --outf tagged --nec --noflush
+
+## Testing Freeling stand-alone
+
+    FREELINGSHARE=/usr/local/share/freeling/ analyzer -f config/freeling/analyzer.cfg --inpf plain --locale es_ES.UTF-8 --outf morfo --noflush < file.txt
