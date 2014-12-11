@@ -1,12 +1,18 @@
+# encoding: utf-8
+
+require "enumerator"
 require "open3"
 require "tempfile"
 require "timeout"
+
 require "hashie/mash"
 require "freeling_client/base"
 
 
 module FreelingClient
   class Analyzer < Base
+
+    Token = Class.new(Hashie::Mash)
 
     def initialize(opt={})
       @config = opt.fetch(:config, 'config/freeling/analyzer.cfg')
@@ -41,6 +47,58 @@ module FreelingClient
         file.unlink
       end
       output
+    end
+
+    def tokens(cmd, text)
+      valide_command!(cmd)
+      Enumerator.new do |yielder|
+        call(cmd, text).each do |freeling_line|
+          yielder << parse_token_line(freeling_line) unless freeling_line.empty?
+        end
+      end
+    end
+
+    def ptokens(cmd, text)
+      Enumerator.new do |yielder|
+        pos = 0
+        tokens(cmd, text).each do |token|
+          ne_text = token['form'].dup
+
+          ne_regexp = build_regexp(ne_text)
+          token_pos = text.index(ne_regexp, pos)
+
+          if token_pos && token_pos < (pos + 5)
+            token.pos = token_pos
+            yielder << token
+
+            pos = token_pos + ne_text.length
+          else
+            pos = pos + ne_text.length
+          end
+        end
+      end
+    end
+
+    def parse_token_line(str)
+      form, lemma, tag, prob = str.split(' ')[0..3]
+      Token.new({
+        :form => form,
+        :lemma => lemma,
+        :tag => tag,
+        :prob => prob.nil? ? nil : prob.to_f,
+      }.reject { |k, v| v.nil? })
+    end
+
+    def build_regexp(ne_text)
+      begin
+        if ne_text =~ /\_/
+           /#{ne_text.split('_').join('\W+')}/i
+        else
+          /#{ne_text}/i
+        end
+      rescue RegexpError => e
+        /./
+      end
     end
 
     def command(cmd, file_path)
