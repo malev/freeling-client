@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require "open3"
 require "freeling_client/base"
 
@@ -10,6 +12,17 @@ module FreelingClient
       @timeout = opt.fetch(:timeout, 120)
     end
 
+    # Detects language
+    #
+    # Example:
+    #
+    #   >> detector = FreelingClient::LanguageDetector.new
+    #   >> detector.detect("Este texto está en español.")
+    #   => "es"
+    #
+    # Arguments:
+    #   text: (String)
+    #
     def detect(text)
       output = []
       file = Tempfile.new('foo', encoding: 'utf-8')
@@ -37,6 +50,8 @@ module FreelingClient
       end
       output[0].to_sym
     end
+
+    private
 
     def command(file_path)
       "/usr/local/bin/analyzer --outf ident --fidn #{ident} -f #{config} < #{file_path}"
