@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    freeling-client (0.0.1)
+    freeling-client (0.0.2)
       hashie (~> 3)
 
 GEM
