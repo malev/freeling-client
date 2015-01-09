@@ -5,15 +5,11 @@ require "open3"
 require "tempfile"
 require "timeout"
 
-require "hashie/mash"
 require "freeling_client/base"
 
 
 module FreelingClient
   class Analyzer < Base
-
-    Token = Class.new(Hashie::Mash)
-
     def initialize(opt={})
       @config = opt.fetch(:config, 'config/freeling/analyzer.cfg')
       @timeout = opt.fetch(:timeout, 60) # Three hours
@@ -102,7 +98,7 @@ module FreelingClient
 
     def parse_token_line(str)
       form, lemma, tag, prob = str.split(' ')[0..3]
-      Token.new({
+      FreelingClient::Token.new({
         :form => form,
         :lemma => lemma,
         :tag => tag,

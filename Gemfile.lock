@@ -2,12 +2,10 @@ PATH
   remote: .
   specs:
     freeling-client (0.0.2)
-      hashie (~> 3)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    hashie (3.3.2)
     minitest (5.4.3)
     rake (10.3.2)
 
