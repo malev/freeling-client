@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    freeling-client (0.0.2)
+    freeling-client (0.0.3)
 
 GEM
   remote: https://rubygems.org/
